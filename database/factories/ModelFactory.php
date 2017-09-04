@@ -22,3 +22,19 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/**
+ * Генерируем новости
+ *
+ * @var \Illuminate\Database\Eloquent\Factory $factory
+ */
+$factory->define(App\News::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => function () {
+            return App\User::inRandomOrder()->pluck('id')->first();
+        },
+        'title' => $faker->realText(150),
+        'body' => $faker->paragraphs(4, true),
+        'image' => $faker->imageUrl(840, 360)
+    ];
+});
