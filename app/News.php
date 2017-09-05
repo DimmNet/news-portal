@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class News extends Model
 {
@@ -23,5 +24,16 @@ class News extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Обрезает текст из body до 40 слов.
+     *
+     * @return string
+     */
+    public function getShortBodyAttribute()
+    {
+        $string = strip_tags($this->body);
+        return Str::words($string, 40);
     }
 }

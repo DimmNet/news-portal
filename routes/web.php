@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'NewsController@index');
+
+Route::get('/news/{news}/{title}', 'NewsController@show');
 
 Auth::routes();
 
