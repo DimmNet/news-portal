@@ -2,7 +2,14 @@
 
 @section ('content')
     <div class="col-sm-8 blog-main">
-        <img src="{{ $news->image }}" alt="img">
+        @if ($flash = session('message'))
+            <div id='flash-message' class='alert alert-success' role='alert'>
+                {{ $flash }}
+            </div>
+        @endif
+        @if (!empty($news->image))
+            <img src="{{ $news->image }}" alt="img">
+        @endif
         <h3 class="blog-post-title">
             {{ $news->title }}
         </h3>
