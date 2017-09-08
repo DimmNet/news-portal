@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsForm;
 use App\News;
+use App\Notifications\News\DeletedNotification;
 
 class NewsController extends Controller
 {
@@ -63,5 +64,16 @@ class NewsController extends Controller
         session()->flash('message', 'Ваша новость опубликована!');
 
         return redirect('/news/'.$news->id.'/'.str_replace(' ', '_', $news->title));
+    }
+
+    public function destroy(News $news)
+    {
+        $news->user->notify(new DeletedNotification($news));
+
+        $news->delete();
+
+        session()->flash('message', 'Ваша новость удалена!');
+
+        return redirect()->home();
     }
 }
