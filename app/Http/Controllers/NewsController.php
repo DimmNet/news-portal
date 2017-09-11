@@ -66,6 +66,33 @@ class NewsController extends Controller
         return redirect('/news/'.$news->id.'/'.$news->clearTitle);
     }
 
+    /**
+     * Отображение формы редактирования новости.
+     *
+     * @param News $news
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(News $news)
+    {
+        return view('news.edit', compact('news'));
+    }
+
+    /**
+     * Обновляем новость.
+     *
+     * @param News $news
+     * @param NewsForm $form
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(News $news, NewsForm $form)
+    {
+        $news->update(request()->all());
+
+        session()->flash('message', 'Ваша новость изменена!');
+
+        return redirect('/news/'.$news->id.'/'.$news->clearTitle);
+    }
+
     public function destroy(News $news)
     {
         $news->user->notify(new DeletedNotification($news));

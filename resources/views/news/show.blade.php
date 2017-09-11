@@ -15,6 +15,12 @@
 
         {!! $news->body !!}
 
+        @can('update', $news)
+            <form action="{{route('news.edit', $news->id)}}" method="GET">
+                <button type="submit" class="btn btn-info">Редактировать</button>
+            </form>
+        @endcan
+
         @can('delete', $news)
             <form action="{{route('news.delete', $news->id)}}" method="POST">
                 {{ csrf_field() }}
