@@ -63,7 +63,7 @@ class NewsController extends Controller
 
         session()->flash('message', 'Ваша новость опубликована!');
 
-        return redirect('/news/'.$news->id.'/'.str_replace(' ', '_', $news->title));
+        return redirect('/news/'.$news->id.'/'.$news->clearTitle);
     }
 
     public function destroy(News $news)

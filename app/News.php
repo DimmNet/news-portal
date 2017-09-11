@@ -36,4 +36,14 @@ class News extends Model
         $string = strip_tags($this->body);
         return Str::words($string, 40);
     }
+
+    /**
+     * Заменяет пробелы на нижнее подчеркивание в заголовке.
+     *
+     * @return string
+     */
+    public function getClearTitleAttribute()
+    {
+        return str_replace(' ', '_', $this->title);
+    }
 }

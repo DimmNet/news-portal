@@ -1,5 +1,5 @@
 <div class="blog-post">
-    <a href="/news/{{ $post->id }}/{{ str_replace(' ', '_', $post->title) }}">
+    <a href="/news/{{ $post->id }}/{{ $post->clearTitle }}">
         @if (!empty($post->image))
             <img src="{{ $post->image }}" alt="img">
         @endif
