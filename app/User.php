@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Получить новости пользователя.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
 }

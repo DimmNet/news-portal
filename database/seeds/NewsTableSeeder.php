@@ -1,8 +1,9 @@
 <?php
 
+use App\News;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class NewsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UsersTableSeeder::class);
-         $this->call(NewsTableSeeder::class);
+        factory(News::class, 100)->create();
     }
 }
