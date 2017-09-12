@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NewsForm;
 use App\News;
 use App\Notifications\News\DeletedNotification;
+use App\Notifications\News\EditedNotification;
 
 class NewsController extends Controller
 {
@@ -87,6 +88,8 @@ class NewsController extends Controller
     public function update(News $news, NewsForm $form)
     {
         $news->update(request()->all());
+
+        $news->user->notify(new EditedNotification($news));
 
         session()->flash('message', 'Ваша новость изменена!');
 
