@@ -9,7 +9,7 @@
     </a>
     <p class="blog-post-meta">
         {{ $post->user->name }} в
-        {{ $post->created_at->toFormattedDateString() }}
+        {{ $post->created_at->diffForHumans() }}
     </p>
 
     {{ $post->shortBody }}

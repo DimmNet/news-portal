@@ -10,7 +10,7 @@
         </h3>
         <p class="blog-post-meta">
             {{ $news->user->name }} в
-            {{ $news->created_at->toFormattedDateString() }}
+            {{ $news->created_at->diffForHumans() }}
         </p>
 
         {!! $news->body !!}
