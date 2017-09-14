@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'NewsController@index')->name('home');
+Route::get('/home', 'NewsController@index');
 
 Route::get('/news/{news}/{title}', 'NewsController@show')->where('news', '\d+');
 Route::get('/news/create', 'NewsController@create');
@@ -24,5 +25,3 @@ Route::delete('news/{news}', 'NewsController@destroy')->name('news.delete')
     ->where('news', '\d+')->middleware('can:delete,news');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
