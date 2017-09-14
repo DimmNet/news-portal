@@ -47,7 +47,7 @@ class DeletedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->subject(env('APP_NAME').' - Новость была удалена')->markdown('mails/news/deleted', [
+        return (new MailMessage)->subject(__('mails.subject_deleted_news', ['siteName' => env('APP_NAME')]))->markdown('mails/news/deleted', [
             'news' => $this->news
         ]);
     }

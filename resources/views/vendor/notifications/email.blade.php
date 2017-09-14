@@ -4,9 +4,9 @@
 # {{ $greeting }}
 @else
 @if ($level == 'error')
-# {{ trans('mails.whoops') }}
+# @lang('mails.whoops')
 @else
-# {{ trans('mails.hello') }}
+# @lang('mails.hello')
 @endif
 @endif
 
@@ -45,13 +45,13 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-{{ trans('mails.regards') }},<br>{{ config('app.name') }}
+@lang('mails.regards'),<br>{{ config('app.name') }}
 @endif
 
 {{-- Subcopy --}}
 @isset($actionText)
 @component('mail::subcopy')
-    {{ trans('mails.subcopy', ['actionText' => $actionText, 'actionUrl' => $actionUrl]) }}
+    @lang('mails.subcopy', ['actionText' => $actionText, 'actionUrl' => $actionUrl])
 @endcomponent
 @endisset
 @endcomponent

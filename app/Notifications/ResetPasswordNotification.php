@@ -47,9 +47,9 @@ class ResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject(env('APP_NAME').' - Сброс пароля')
-            ->line(trans('auth.line_1'))
-            ->action(trans('auth.password_reset'), url(config('app.url').route('password.reset', $this->token, false)))
-            ->line(trans('auth.line_2'));
+            ->subject(__('mails.subject_reset_pasword', ['siteName' => env('APP_NAME')]))
+            ->line(__('mails.reset_line_1'))
+            ->action(__('mails.reset_password'), url(config('app.url').route('password.reset', $this->token, false)))
+            ->line(__('mails.reset_line_2'));
     }
 }

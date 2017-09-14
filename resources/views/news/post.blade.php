@@ -8,7 +8,7 @@
         </h3>
     </a>
     <p class="blog-post-meta">
-        {{ $post->user->name }} в
+        {{ $post->user->name }} -
         {{ $post->created_at->diffForHumans() }}
     </p>
 
