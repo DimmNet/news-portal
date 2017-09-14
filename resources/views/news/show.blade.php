@@ -9,15 +9,15 @@
             {{ $news->title }}
         </h3>
         <p class="blog-post-meta">
-            {{ $news->user->name }} в
-            {{ $news->created_at->toFormattedDateString() }}
+            {{ $news->user->name }} -
+            {{ $news->created_at->diffForHumans() }}
         </p>
 
         {!! $news->body !!}
 
         @can('update', $news)
             <form action="{{route('news.edit', $news->id)}}" method="GET">
-                <button type="submit" class="btn btn-info">Редактировать</button>
+                <button type="submit" class="btn btn-info">@lang('news.edit')</button>
             </form>
         @endcan
 
@@ -25,7 +25,7 @@
             <form action="{{route('news.delete', $news->id)}}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <button type="submit" class="btn btn-dark">Удалить</button>
+                <button type="submit" class="btn btn-dark">@lang('news.delete')</button>
             </form>
         @endcan
     </div>

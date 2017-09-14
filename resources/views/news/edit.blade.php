@@ -3,7 +3,7 @@
 @section ('content')
     <div class="col-sm-8 blog-main">
         <h1>
-            Редактирование новости
+            @lang('news.edit_news')
         </h1>
 
         <hr>
@@ -12,7 +12,7 @@
             {{csrf_field()}}
 
             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                <label for="title">Заголовок</label>
+                <label for="title">@lang('news.title')</label>
 
                 <input type="text" class="form-control" id="title" name="title" value="{{ old('title') ?: $news->title }}">
 
@@ -24,7 +24,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-                <label for="image">Ссылка на картинку</label>
+                <label for="image">@lang('news.image')</label>
 
                 <input type="text" class="form-control" id="image" name="image" value="{{ old('image') ?: $news->image }}">
 
@@ -36,7 +36,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                <label for="body">Статья</label>
+                <label for="body">@lang('news.body')</label>
 
                 <textarea class="form-control" id="body" name="body">{{ old('body') ?: $news->body }}</textarea>
 
@@ -48,7 +48,7 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button type="submit" class="btn btn-primary">@lang('news.save')</button>
             </div>
         </form>
     </div>

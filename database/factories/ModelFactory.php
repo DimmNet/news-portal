@@ -34,7 +34,7 @@ $factory->define(App\News::class, function (Faker\Generator $faker) {
             return App\User::inRandomOrder()->pluck('id')->first();
         },
         'title' => $faker->realText(150),
-        'body' => $faker->paragraphs(4, true),
+        'body' => $faker->realText(3000),
         'image' => $faker->imageUrl(840, 360)
     ];
 });

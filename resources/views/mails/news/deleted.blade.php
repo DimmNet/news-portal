@@ -1,12 +1,12 @@
 @component('mail::message')
-# Ваша новость удалена
+# @lang('mails.news_deleted')
 
-Ваша новость "**{{ $news->title }}**" была только что удалена.
+@lang('mails.news_deleted_line_1', ['title' => $news->title])
 
 @component('mail::button', ['url' => config('app.url')])
-    Перейти на сайт
+    @lang('mails.go_to_site')
 @endcomponent
 
-Спасибо,<br>
+@lang('mails.regards'),<br>
 {{ config('app.name') }}
 @endcomponent

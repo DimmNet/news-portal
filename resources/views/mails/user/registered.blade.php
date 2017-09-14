@@ -1,14 +1,14 @@
 @component('mail::message')
-# Добро пожаловать на сайт {{ config('app.name') }}
+# @lang('mails.welcome', ['siteName' => config('app.name')])
 
-{{ $user->name }}, Ваш аккаунт был создан. Вы можете войти, используя Ваш адрес электронной почты **{{ $user->email }}**,  и пароль на нашем сайте:
+{{ $user->name }}, @lang('mails.registered_line_1', ['email' => $user->email])
 @component('mail::button', ['url' => config('app.url')])
-    Перейти на сайт
+    @lang('mails.go_to_site')
 @endcomponent
 
-Зарегистрировавшись, вы сможете получить доступ ко всем сервисам, включая создание новостей.
+@lang('mails.registered_line_2')
 
 
-Спасибо,<br>
+@lang('mails.thanks'),<br>
 {{ config('app.name') }}
 @endcomponent

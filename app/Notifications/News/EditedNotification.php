@@ -47,7 +47,7 @@ class EditedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->subject(env('APP_NAME').' - Новость была отредактирована')->markdown('mails/news/edited', [
+        return (new MailMessage)->subject(__('mails.subject_edited_news', ['siteName' => env('APP_NAME')]))->markdown('mails/news/edited', [
             'news' => $this->news
         ]);
     }

@@ -36,7 +36,7 @@ class RegisteredMail extends Mailable
      */
     public function build()
     {
-        return $this->subject(env('APP_NAME').' - Благодарим за регистрацию')->markdown('mails/user/registered', [
+        return $this->subject(__('mails.subject_registered', ['siteName' => env('APP_NAME')]))->markdown('mails/user/registered', [
             'user' => $this->user
         ]);
     }
