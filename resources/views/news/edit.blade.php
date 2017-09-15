@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('layouts.main')
 
 @section ('content')
     <div class="col-sm-8 blog-main">
@@ -8,7 +8,7 @@
 
         <hr>
 
-        <form method="POST" action="{{ route('news.update', $news->id) }}">
+        <form method="POST" action="{{ route('news.update', $news->id) }}" role="form">
             {{csrf_field()}}
 
             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
