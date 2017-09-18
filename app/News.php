@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -24,6 +25,37 @@ class News extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Фильтрация записей по месяцу и году.
+     *
+     * @param $query
+     * @param $filters
+     */
+    public function scopeFilter($query, $filters)
+    {
+        if ($filters['month']) {
+            $query->whereMonth('created_at', Carbon::parse($filters['month'])->month);
+        }
+
+        if ($filters['year']) {
+            $query->whereYear('created_at', $filters['year']);
+        }
+    }
+
+    /**
+     * Архив новостей, для вывода в layouts/sidebar.blade.php
+     *
+     * @return array
+     */
+    public static function archives()
+    {
+        return static::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+            ->groupBy('year', 'month')
+            ->orderByRaw('min(created_at) desc')
+            ->get()
+            ->toArray();
     }
 
     /**

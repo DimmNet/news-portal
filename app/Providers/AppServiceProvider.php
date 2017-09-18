@@ -15,6 +15,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Carbon::setlocale('ru');
+        view()->composer('layouts.sidebar', function ($view) {
+            $archives = \App\News::archives();
+
+            $view->with(compact('archives'));
+        });
     }
 
     /**
