@@ -29,20 +29,4 @@ class NewsForm extends FormRequest
             'image' => 'nullable|max:255|active_url'
         ];
     }
-
-    /**
-     * Get custom messages for validator errors.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'title.required' => 'Необходимо указать заголовок',
-            'title.max' => 'Заголовок не должен превышать 255 символов',
-            'body.required'  => 'Необходимо написать статью',
-            'image.max' => 'Ссылка на картинку не должна превышать 255 символов',
-            'image.active_url' => 'Ссылка на картинку должна быть валидной',
-        ];
-    }
 }
