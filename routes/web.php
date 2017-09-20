@@ -24,4 +24,7 @@ Route::post('/news/update/{news}', 'NewsController@update')->name('news.update')
 Route::delete('news/{news}', 'NewsController@destroy')->name('news.delete')
     ->where('news', '\d+')->middleware('can:delete,news');
 
+Route::post('/news/{news}/comments', 'CommentsController@store')->name('comments.store')
+    ->where('news', '\d+');
+
 Auth::routes();

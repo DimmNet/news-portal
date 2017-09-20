@@ -137,6 +137,7 @@ return [
         'email' => 'Email',
         'password' => 'Пароль',
         'password_confirm' => 'Повторите пароль',
+        'comment' => 'комментарий',
     ],
 
 ];

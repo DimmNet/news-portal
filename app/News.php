@@ -28,6 +28,16 @@ class News extends Model
     }
 
     /**
+     * Получить комментарии к новости.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
      * Фильтрация записей по месяцу и году.
      *
      * @param $query
