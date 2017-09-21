@@ -3,7 +3,7 @@
 @section ('content')
     <div class="col-sm-8 blog-main">
         @if (!empty($news->image))
-            <img src="{{ $news->image }}" class="img-fluid" alt="img">
+            <img src="{{ $news->image }}" class="img-fluid" alt="img" title="{{ $news->title }}">
         @endif
         <h3 class="blog-post-title">
             {{ $news->title }}
@@ -39,44 +39,42 @@
             </div>
         @endcan
 
-        <hr>
+        @if ($news->comments->count())
+            <hr>
 
-        <div class="comments">
-            <ul class="list-group">
-                @foreach ($news->comments as $comment)
-                    <li class="list-group-item">
-                        <strong>
-                            {{ $comment->user->name }} -
-                            {{ $comment->created_at->diffForHumans() }} &nbsp;
-                        </strong>
-                        {{ $comment->body }}
-                    </li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="comments">
+                <ul class="list-group">
+                    @foreach ($news->comments as $comment)
+                        <li class="list-group-item">
+                            <strong>
+                                {{ $comment->user->name }} -
+                                {{ $comment->created_at->diffForHumans() }} &nbsp;
+                            </strong>
+                            {{ $comment->body }}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         @if (Auth::check())
             <hr>
 
-            <div class="card">
-                <div class="card-block">
-                    <form method="POST" action="{{route('comments.store', $news->id)}}">
-                        {{csrf_field()}}
-                        <div class="form-group">
-                            <textarea class="form-control{{ $errors->has('comment') ? ' is-invalid' : '' }}" name="comment" placeholder="@lang('news.comment')">{{ old('comment') }}</textarea>
+            <form method="POST" action="{{route('comments.store', $news->id)}}">
+                {{csrf_field()}}
+                <div class="form-group">
+                    <textarea class="form-control{{ $errors->has('comment') ? ' is-invalid' : '' }}" name="comment" placeholder="@lang('news.comment')">{{ old('comment') }}</textarea>
 
-                            @if ($errors->has('comment'))
-                                <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('comment') }}</strong>
-                                </span>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">@lang('news.add_comment')</button>
-                        </div>
-                    </form>
+                    @if ($errors->has('comment'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('comment') }}</strong>
+                        </span>
+                    @endif
                 </div>
-            </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">@lang('news.add_comment')</button>
+                </div>
+            </form>
         @endif
     </div>
 @endsection
