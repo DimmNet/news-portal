@@ -192,6 +192,9 @@ return [
         // IDE helper
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        // Markdown
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class,
+
     ],
 
     /*
@@ -240,6 +243,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        // Markdown facade
+        'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
 
     ],
 
