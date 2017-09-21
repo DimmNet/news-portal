@@ -14,7 +14,7 @@ class News extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'body', 'image',
+        'title', 'body', 'markdown_body', 'image',
     ];
 
     /**

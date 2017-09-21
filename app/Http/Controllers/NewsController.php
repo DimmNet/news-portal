@@ -59,7 +59,12 @@ class NewsController extends Controller
     public function store(NewsForm $form)
     {
         $news = auth()->user()->news()->save(
-            new News(request()->all())
+            new News([
+                'title' => request('title'),
+                'body' => \Markdown::convertToHtml(request('body')),
+                'markdown_body' => request('body'),
+                'image' => request('image'),
+            ])
         );
 
         session()->flash('message', 'Ваша новость опубликована!');
@@ -87,7 +92,12 @@ class NewsController extends Controller
      */
     public function update(News $news, NewsForm $form)
     {
-        $news->update(request()->all());
+        $news->update([
+            'title' => request('title'),
+            'body' => \Markdown::convertToHtml(request('body')),
+            'markdown_body' => request('body'),
+            'image' => request('image'),
+        ]);
 
         $news->user->notify(new EditedNotification($news));
 
