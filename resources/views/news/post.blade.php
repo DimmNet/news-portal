@@ -1,5 +1,5 @@
 <div class="blog-post">
-    <a href="/news/{{ $post->id }}/{{ $post->clearTitle }}">
+    <a href="{{ route('news.show', [$news->id, $news->clearTitle]) }}">
         @if (!empty($post->image))
             <img src="{{ $post->image }}" class="img-fluid" alt="img" title="{{ $post->title }}">
         @endif

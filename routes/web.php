@@ -14,7 +14,8 @@
 Route::get('/', 'NewsController@index')->name('home');
 Route::get('/home', 'NewsController@index');
 
-Route::get('/news/{news}/{title}', 'NewsController@show')->where('news', '\d+');
+Route::get('/news/{news}/{title}', 'NewsController@show')->name('news.show')
+    ->where('news', '\d+');
 Route::get('/news/create', 'NewsController@create')->name('news.create');
 Route::post('/news', 'NewsController@store')->name('news.store');
 Route::get('/news/edit/{news}', 'NewsController@edit')->name('news.edit')
