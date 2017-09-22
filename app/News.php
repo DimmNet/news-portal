@@ -42,6 +42,7 @@ class News extends Model
      *
      * @param $query
      * @param $filters
+     * @return mixed
      */
     public function scopeFilter($query, $filters)
     {
@@ -52,6 +53,8 @@ class News extends Model
         if ($filters['year']) {
             $query->whereYear('created_at', $filters['year']);
         }
+
+        return $query;
     }
 
     /**
