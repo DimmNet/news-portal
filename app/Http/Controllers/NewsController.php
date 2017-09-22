@@ -96,6 +96,12 @@ class NewsController extends Controller
         return redirect()->route('news.show', [$news->id, $news->clearTitle]);
     }
 
+    /**
+     * Удаление новости
+     *
+     * @param News $news
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(News $news)
     {
         $news->user->notify(new DeletedNotification($news));
