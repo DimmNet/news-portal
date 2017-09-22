@@ -54,7 +54,7 @@ class NewsController extends Controller
      * Сохраняем новость.
      *
      * @param NewsForm $form
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(NewsForm $form)
     {
@@ -64,7 +64,7 @@ class NewsController extends Controller
 
         session()->flash('message', 'Ваша новость опубликована!');
 
-        return redirect('/news/'.$news->id.'/'.$news->clearTitle);
+        return redirect()->route('news.show', [$news->id, $news->clearTitle]);
     }
 
     /**
@@ -83,7 +83,7 @@ class NewsController extends Controller
      *
      * @param News $news
      * @param NewsForm $form
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(News $news, NewsForm $form)
     {
@@ -93,7 +93,7 @@ class NewsController extends Controller
 
         session()->flash('message', 'Ваша новость изменена!');
 
-        return redirect('/news/'.$news->id.'/'.$news->clearTitle);
+        return redirect()->route('news.show', [$news->id, $news->clearTitle]);
     }
 
     public function destroy(News $news)
