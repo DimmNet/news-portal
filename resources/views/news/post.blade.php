@@ -12,5 +12,5 @@
         {{ $post->created_at->diffForHumans() }}
     </p>
 
-    {{ $post->shortBody }}
+    {!! \Markdown::convertToHtml($post->shortBody) !!}
 </div>

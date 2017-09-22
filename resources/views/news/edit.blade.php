@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label for="body">@lang('news.body')</label>
 
-                <textarea class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }}" id="body" name="body">{{ old('body') ?: $news->markdown_body }}</textarea>
+                <textarea class="form-control{{ $errors->has('body') ? ' is-invalid' : '' }}" id="body" name="body">{{ old('body') ?: $news->body }}</textarea>
 
                 @if ($errors->has('body'))
                     <span class="invalid-feedback">

@@ -13,7 +13,7 @@
             {{ $news->created_at->diffForHumans() }}
         </p>
 
-        {!! $news->body !!}
+        {!! \Markdown::convertToHtml($news->body) !!}
 
         @can('update', $news)
             <div class="d-flex justify-content-end">
